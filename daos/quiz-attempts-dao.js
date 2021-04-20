@@ -7,7 +7,7 @@ const scoreQuiz = (questions) => {
     let correctQuestions = 0
     questions.forEach(question =>
         question.answer === question.correct ? correctQuestions++ : correctQuestions)
-    return 100 * correctQuestions / questions.length
+    return (100 * correctQuestions / questions.length).toPrecision(2)
 }
 const findAttemptsForQuiz = (quizId) =>
     quizAttemptsModel.find({quiz: quizId})
@@ -19,7 +19,7 @@ const createAttempt = (quizId, attempt) => {
             let idNumber = String(result.length)
 
             return quizAttemptsModel.create({
-                _id: quizId-idNumber,
+                _id: quizId + "-" + idNumber,
                 quiz: quizId,
                 answers: attempt,
                 score: scoreQuiz(attempt)

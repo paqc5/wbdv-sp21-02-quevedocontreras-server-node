@@ -1,5 +1,8 @@
 const quizzesModel = require('../models/quizzes/quizzes-model')
 
+const createQuiz = (quiz) =>
+  quizzesModel.create(quiz)
+
 const findAllQuizzes = () => 
   quizzesModel.find()
 
@@ -9,5 +12,5 @@ const findQuizById = (quizId) =>
       .exec()
 
 module.exports = {
-  findAllQuizzes, findQuizById
+  createQuiz, findAllQuizzes, findQuizById
 }

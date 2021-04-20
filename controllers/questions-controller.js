@@ -2,6 +2,12 @@ const questionsService = require('../services/questions/questions-service')
 
 module.exports = (app) => {
 
+  const createQuestion = (req, res) => {
+    const question = req.body
+    questionsService.createQuestion(question)
+        .then(question => res.send(question))
+  }
+
   const findAllQuestions = (req, res) => {
     // const questions = questionsService.findAllQuestions()
     questionsService.findAllQuestions()
@@ -23,6 +29,7 @@ module.exports = (app) => {
       .then(question => res.send(question))
   }
 
+  app.post('/api/questions', createQuestion)
   app.get('/api/questions', findAllQuestions)
   app.get('/api/questions/:questionId', findQuestionById)
   app.get('/api/quizzes/:quizId/questions', findAllQuestionsForQuiz)
